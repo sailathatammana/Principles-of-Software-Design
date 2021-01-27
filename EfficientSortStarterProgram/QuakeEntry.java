@@ -1,4 +1,4 @@
-    
+
 public class QuakeEntry implements Comparable<QuakeEntry>{
     
     private Location myLocation;
@@ -22,17 +22,35 @@ public class QuakeEntry implements Comparable<QuakeEntry>{
     public double getMagnitude(){
         return magnitude;
     }
-    
     public String getInfo(){
         return title;
     }
-    
     public double getDepth(){
         return depth;
     }
 
     @Override
     public int compareTo(QuakeEntry loc) {
+        
+        if (Double.compare (magnitude,loc.getMagnitude())==0){    
+            return Double.compare (depth,loc.getDepth());//smallest to largest
+        }
+        return Double.compare (magnitude,loc.getMagnitude());
+        //return Double.compare(magnitude, loc.getMagnitude());
+        // Here is another way to sort by Magnitude
+        /*
+        if (magnitude < loc.getMagnitude()){
+            return -1;
+           }
+        if (magnitude > loc.getMagnitude()){
+            return 1;
+           }
+        return 0;
+        
+        */
+        
+       //  Below here sorts by Location
+        /*
         double difflat = myLocation.getLatitude() - loc.myLocation.getLatitude();
         if (Math.abs(difflat) < 0.001) {
             double diff = myLocation.getLongitude() - loc.myLocation.getLongitude();
@@ -43,8 +61,10 @@ public class QuakeEntry implements Comparable<QuakeEntry>{
         if (difflat < 0) return -1;
         if (difflat > 0) return 1;
         
+        
         // never reached
         return 0;
+        */
     }
     
     public String toString(){
